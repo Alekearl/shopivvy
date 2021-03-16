@@ -1,0 +1,36 @@
+package com.ivvysoft.shop.service.impl;
+
+import com.ivvysoft.shop.model.Client;
+import com.ivvysoft.shop.repository.ClientRepository;
+import com.ivvysoft.shop.service.ClientService;
+import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClientServiceImpl implements ClientService {
+    private final ClientRepository clientRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public ClientServiceImpl(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
+        this.clientRepository = clientRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public Client add(Client client) {
+        String encodePassword = passwordEncoder.encode(client.getPassword());
+        client.setPassword(encodePassword);
+        return clientRepository.save(client);
+    }
+
+    @Override
+    public Client get(Long id) {
+        return null;
+    }
+
+    @Override
+    public Optional<Client> findByEmail(String email) {
+        return Optional.empty();
+    }
+}
