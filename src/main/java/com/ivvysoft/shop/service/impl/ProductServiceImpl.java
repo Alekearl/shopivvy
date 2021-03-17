@@ -21,4 +21,19 @@ public class ProductServiceImpl implements ProductService {
         return productRepository
                 .findAllProductsByTemplate("%" + template + "%");
     }
+
+    @Override
+    public Product getProductById(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Cant find pdoduct by id "
+                + productId + "."));
+    }
+
+    @Override
+    public void updateQuantity(Long productId, Long quantity) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Can't find product id" + productId + "."));
+        product.setQuantity(quantity);
+        productRepository.save(product);
+    }
 }
