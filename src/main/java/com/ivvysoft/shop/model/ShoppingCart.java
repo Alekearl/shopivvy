@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -16,6 +17,7 @@ public class ShoppingCart {
     @Id
     private Long id;
     @OneToOne
+    @MapsId
     private Client client;
     @OneToMany
     @JoinTable

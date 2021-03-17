@@ -21,5 +21,5 @@ public class Product {
     @Min(0)
     private Double cost;
     @Min(0)
-    private Integer quantity;
+    private Long quantity;
 }
