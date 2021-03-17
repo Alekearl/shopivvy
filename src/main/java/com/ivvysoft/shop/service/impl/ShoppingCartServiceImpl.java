@@ -60,4 +60,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 .orElseThrow(() -> new RuntimeException("Cant find shopping cart by id "
                 + id + "."));
     }
+
+    @Override
+    public ShoppingCart getByClient(Client client) {
+        return shoppingCartRepository.getShoppingCartByClient(client);
+    }
 }

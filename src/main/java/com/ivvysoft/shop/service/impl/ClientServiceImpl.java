@@ -26,11 +26,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client get(Long id) {
-        return null;
+        return clientRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Can't find client by id "
+                + id + "."));
     }
 
     @Override
     public Optional<Client> findByEmail(String email) {
-        return Optional.empty();
+        return clientRepository.findByEmail(email);
     }
 }

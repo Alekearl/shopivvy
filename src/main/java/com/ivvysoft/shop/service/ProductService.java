@@ -7,4 +7,6 @@ public interface ProductService {
     List<Product> getAllByTemplate(String template);
 
     Product getProductById(Long productId);
+
+    void updateQuantity(Long productId, Long quantity);
 }

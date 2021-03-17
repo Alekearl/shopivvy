@@ -14,4 +14,6 @@ public interface ShoppingCartService {
     void clearShoppingCart(ShoppingCart shoppingCart);
 
     ShoppingCart getShoppingCartById(Long id);
+
+    ShoppingCart getByClient(Client client);
 }
