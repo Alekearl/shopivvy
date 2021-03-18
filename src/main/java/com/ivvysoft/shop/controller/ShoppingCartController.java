@@ -32,7 +32,7 @@ public class ShoppingCartController {
         this.clientService = clientService;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/products/add")
     public void addProductToCart(Authentication authentication,
                                            @RequestParam Long productId,
                                            @RequestParam Long quantity) {
@@ -44,7 +44,7 @@ public class ShoppingCartController {
         shoppingCartService.addProductToShoppingCart(shoppingCart, product, quantity);
     }
 
-    @DeleteMapping("/remove")
+    @DeleteMapping("/products/remove")
     public ResponseEntity<ShoppingCart> removeProductFromCart(Authentication authentication,
                                       @RequestParam Long productId) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
