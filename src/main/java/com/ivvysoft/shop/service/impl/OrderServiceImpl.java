@@ -33,13 +33,12 @@ public class OrderServiceImpl implements OrderService {
         order.setProducts(new ArrayList<>(shoppingCart.getProducts()));
         double total = 0.0;
         for (Product product : order.getProducts()) {
-            long productQuantityUpdate = productService.getProductById(product.getId())
-                    .getQuantity() - product.getQuantity();
-            productService.updateQuantity(product.getId(), productQuantityUpdate);
-            double v = product.getCost() * product.getQuantity();
-            total += v;
+            total += product.getCost() * product.getQuantity();
         }
-        order.setTotalPrice(total - total * order.getClient().getDiscount());
+        if (order.getClient().getDiscount() != null) {
+            order.setTotalPrice(total - total * order.getClient().getDiscount());
+        }
+        order.setTotalPrice(total);
         orderRepository.save(order);
         shoppingCartService.clearShoppingCart(shoppingCart);
         return order;
