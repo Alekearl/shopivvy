@@ -3,7 +3,6 @@ package com.ivvysoft.shop.service.impl;
 import com.ivvysoft.shop.model.Client;
 import com.ivvysoft.shop.repository.ClientRepository;
 import com.ivvysoft.shop.service.ClientService;
-import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Optional<Client> findByEmail(String email) {
-        return clientRepository.findByEmail(email);
+    public Client findByEmail(String email) {
+        return clientRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Can't find client by email "
+                + email + "."));
     }
 }

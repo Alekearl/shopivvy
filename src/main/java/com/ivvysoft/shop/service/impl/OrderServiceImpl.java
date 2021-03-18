@@ -37,8 +37,9 @@ public class OrderServiceImpl implements OrderService {
         }
         if (order.getClient().getDiscount() != null) {
             order.setTotalPrice(total - total * order.getClient().getDiscount());
+        } else {
+            order.setTotalPrice(total);
         }
-        order.setTotalPrice(total);
         orderRepository.save(order);
         shoppingCartService.clearShoppingCart(shoppingCart);
         return order;
