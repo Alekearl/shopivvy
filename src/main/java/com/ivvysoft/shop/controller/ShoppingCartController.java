@@ -38,7 +38,7 @@ public class ShoppingCartController {
                                            @RequestParam Long quantity) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String name = userDetails.getUsername();
-        Client client = clientService.findByEmail(name).get();
+        Client client = clientService.findByEmail(name);
         ShoppingCart shoppingCart = shoppingCartService.getShoppingCartById(client.getId());
         Product product = productService.getProductById(productId);
         shoppingCartService.addProductToShoppingCart(shoppingCart, product, quantity);
@@ -49,7 +49,7 @@ public class ShoppingCartController {
                                       @RequestParam Long productId) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String name = userDetails.getUsername();
-        Client client = clientService.findByEmail(name).get();
+        Client client = clientService.findByEmail(name);
         ShoppingCart shoppingCart = shoppingCartService.getShoppingCartById(client.getId());
         Product product = productService.getProductById(productId);
         shoppingCartService.removeProductFromShoppingCart(shoppingCart, product);

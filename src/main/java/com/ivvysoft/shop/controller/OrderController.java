@@ -40,7 +40,7 @@ public class OrderController {
     public ResponseEntity<OrderDtoResponse> completeOrder(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String username = userDetails.getUsername();
-        Client client = clientService.findByEmail(username).get();
+        Client client = clientService.findByEmail(username);
         ShoppingCart shoppingCart = shoppingCartService.getByClient(client);
         Order order = orderService.completeOrder(shoppingCart);
         return new ResponseEntity<>(orderMapper.mapToDto(order), HttpStatus.OK);
